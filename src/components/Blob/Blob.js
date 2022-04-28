@@ -1,9 +1,9 @@
-import React, { useRef, useEffect, forwardRef } from "react";
+import React, { useRef, forwardRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { vertexShader, fragmentShader } from "./shaders";
 import * as THREE from "three"
 
-export default Blob = forwardRef(({  size,
+const Blob = (({  size,
     speed,
     color,
     density,
@@ -50,3 +50,5 @@ export default Blob = forwardRef(({  size,
     </mesh>
   );
 })
+
+export default forwardRef(Blob);
