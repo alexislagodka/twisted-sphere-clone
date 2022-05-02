@@ -10,7 +10,7 @@ const Blob = (({  size,
     strength,
     offset,
     position,
-    rotation,}, ref) => {
+    rotation}, ref) => {
 
   const clock = new THREE.Clock();
   const material = useRef();
@@ -35,8 +35,8 @@ const Blob = (({  size,
   });
 
   return (
-    <mesh ref={ref} position={position} rotateOnAxis={rotation}>
-      <icosahedronBufferGeometry attach="geometry" args={[size, 64]} />
+    <mesh ref={ref} position={position} rotation={rotation}>
+      <icosahedronBufferGeometry attach="geometry" args={[size, 64]}  />
       <shaderMaterial
         needsUpdate={true}
         attach="material"
