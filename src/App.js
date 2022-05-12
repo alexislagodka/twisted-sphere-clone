@@ -1,8 +1,25 @@
+import { useState } from "react";
 import "./App.css";
-import Blobs from "./components/Blobs/Blobs";
+import Blobs1 from "./components/Blobs/Blobs1";
+import Blobs2 from "./components/Blobs/Blobs2";
+import Blobs3 from "./components/Blobs/Blobs3";
 
 function App() {
-  
+  const [demo, setdemo] = useState(1);
+
+  const renderBlobs = (param) => {
+    switch (param) {
+      case 1:
+        return <Blobs1 />;
+      case 2:
+        return <Blobs2 />;
+      case 3:
+        return <Blobs3 />;
+      default:
+        return <Blobs1 />;
+    }
+  };
+
   return (
     <div className="app">
       <main>
@@ -10,36 +27,37 @@ function App() {
           ~
         </a>
         <h2 className="page-title line line--vertical">
-          <div className="dib" style={{clip:"100%"}}>
+          <div className="dib" style={{ clip: "100%" }}>
             Creative WebGL Blobs
           </div>
         </h2>
         <nav className="demos">
           <div className="dib oh">
-            <a href="/index.html" className="frame__demo frame__demo--current">
+            <button
+              className={`frame__demo ${demo === 1 && "frame__demo--current"}`}
+              onClick={() => setdemo(1)}
+            >
               demo 1
-            </a>
+            </button>
           </div>
           <div className="dib oh">
-            <a href="/index2.html" className="frame__demo">
+            <button
+              className={`frame__demo ${demo === 2 && "frame__demo--current"}`}
+              onClick={() => setdemo(2)}
+            >
               demo 2
-            </a>
+            </button>
           </div>
           <div className="dib oh">
-            <a href="/index3.html" className="frame__demo">
+            <button
+              className={`frame__demo ${demo === 3 && "frame__demo--current"}`}
+              onClick={() => setdemo(3)}
+            >
               demo 3
-            </a>
+            </button>
           </div>
         </nav>
         <nav className="links line line--vertical">
-          <div className="dib oh">
-            <a
-              href="https://tympanus.net/Development/OnScrollLetterAnimations/"
-              className="dib"
-            >
-              Previous demo
-            </a>
-          </div>
           <div className="dib oh">
             <a href="https://tympanus.net/codrops/?p=52932" className="dib">
               Article
@@ -62,10 +80,10 @@ function App() {
           <div>Insomnia</div>
         </h1>
         <div className="subtitle oh">
-          <div>made with react</div>
+          <div>react</div>
         </div>
         <p className="content line line--horizontal">
-          <span className="db" style={{clip:"0%"}}>
+          <span className="db" style={{ clip: "0%" }}>
             The main reliance, however, in the Emmanuel treatment is on faith,
             reinforced first by hetero-suggestion and then by patient and
             persistent auto-suggestion. The man who would be permanently free
@@ -86,18 +104,18 @@ function App() {
           </div>
         </a>
         <span className="credits credits--author line line--horizontal">
-          <div className="dib" style={{clip:"100%"}}>
-            React clone by <a href="https://github.com/alexislagodka/">Alexis Lagodka</a>
-            &#160;of project by <a href="https://twitter.com/marioecg">Mario Carrillo</a>
+          <div className="dib" style={{ clip: "100%" }}>
+            React clone by{" "}
+            <a href="https://github.com/alexislagodka/">Alexis Lagodka</a>
+            &#160;of project by{" "}
+            <a href="https://twitter.com/marioecg">Mario Carrillo</a>
           </div>
         </span>
         <div className="year oh">
           <div>2022</div>
         </div>
       </main>
-      <div className="blobs-canvas">
-        <Blobs />
-      </div>
+      <div className="blobs-canvas">{renderBlobs(demo)}</div>
     </div>
   );
 }
