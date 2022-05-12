@@ -68,6 +68,11 @@ function App() {
               GitHub
             </a>
           </div>
+          <div className="dib oh">
+            <a href="https://github.com/alexislagodka/twisted-sphere-clone" className="dib">
+              GitHub react version
+            </a>
+          </div>
         </nav>
         <div className="menu line line--vertical">
           <div className="menu__inner">
