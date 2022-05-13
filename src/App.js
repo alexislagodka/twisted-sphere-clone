@@ -8,13 +8,15 @@ import Blobs3 from "./components/Blobs/Blobs3";
 function App() {
   const [demo, setdemo] = useState(1);
 
-  const tl = useRef(
-    gsap.timeline({
-      defaults: {
-        ease: "power3.inOut",
-      },
-    })
-  );
+  // const tl = useRef(
+  //   gsap.timeline({
+  //     defaults: {
+  //       ease: "power3.inOut",
+  //     },
+  //   })
+  // );
+
+  const tl = useRef();
 
   // const [tl] = useState(
   //   gsap.timeline({
@@ -57,15 +59,29 @@ function App() {
   }, [demo]);
 
   const article = () => {
+    if (tl.current) {
+      console.log('kill');
+      tl.current.kill();
+    }
+    console.log(tl.current);
+    
+    tl.current = gsap.timeline({
+      defaults: {
+        ease: "power3.inOut",
+      },
+    });
+
+    console.log(tl.current);
     // Content clip
     const content = document.querySelector(".content span");
     const contentClip = { x: 0 };
 
-    tl.current.from(".title div, .subtitle div", {
-      duration: 2,
-      xPercent: -100,
-      // stagger: 0.1,
-    })
+    tl.current
+      .from(".title div, .subtitle div", {
+        duration: 2,
+        xPercent: -100,
+        // stagger: 0.1,
+      })
       .from(
         ".menu__inner-translate",
         {
