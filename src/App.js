@@ -8,33 +8,7 @@ import Blobs3 from "./components/Blobs/Blobs3";
 function App() {
   const [demo, setdemo] = useState(1);
 
-  // const tl = useRef(
-  //   gsap.timeline({
-  //     defaults: {
-  //       ease: "power3.inOut",
-  //     },
-  //   })
-  // );
-
   const tl = useRef();
-
-  // const [tl] = useState(
-  //   gsap.timeline({
-  //     defaults: {
-  //       ease: "power3.inOut",
-  //     },
-  //   })
-  // );
-
-  // const tl = useMemo(
-  //   () =>
-  //     gsap.timeline({
-  //       defaults: {
-  //         ease: "power3.inOut",
-  //       },
-  //     }),
-  //   [demo]
-  // );
 
   const renderBlobs = (param) => {
     switch (param) {
@@ -60,8 +34,8 @@ function App() {
 
   const article = () => {
     let time = tl.current ? tl.current.time() : 0;
-    if (tl.current) tl.current.kill()
-    
+    if (tl.current) tl.current.kill();
+
     tl.current = gsap.timeline({
       defaults: {
         ease: "power3.inOut",
@@ -109,9 +83,9 @@ function App() {
           rotate: "-62deg",
         },
         "-=1.5"
-      )
+      );
 
-      tl.current.time(time)
+    tl.current.time(time);
   };
 
   return (
