@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Blobs1 from "./components/Blobs/Blobs1";
 import Blobs2 from "./components/Blobs/Blobs2";
@@ -19,6 +19,15 @@ function App() {
         return <Blobs1 />;
     }
   };
+
+  useEffect(() => {
+    let bodyclass = `demo-${demo}`;
+    document.body.classList.add(bodyclass)
+    return () => {
+      document.body.classList.remove(bodyclass)
+    }
+  }, [demo])
+  
 
   return (
     <div className="app">

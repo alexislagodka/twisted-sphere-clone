@@ -22,6 +22,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.demo-2 {
+	--color-text: #000000;
+    --color-bg: #c7c7c7;
+}
+
 .blobs-canvas {
   z-index: -1;
   position: absolute;
