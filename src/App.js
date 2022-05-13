@@ -59,11 +59,9 @@ function App() {
   }, [demo]);
 
   const article = () => {
-    if (tl.current) {
-      console.log('kill');
-      tl.current.kill();
-    }
-    console.log(tl.current);
+    let time = tl.current ? tl.current.time() : 0;
+
+    if (tl.current) tl.current.kill()
     
     tl.current = gsap.timeline({
       defaults: {
@@ -71,12 +69,15 @@ function App() {
       },
     });
 
-    console.log(tl.current);
     // Content clip
     const content = document.querySelector(".content span");
     const contentClip = { x: 0 };
 
     tl.current
+      // .set(".title div, .subtitle div", {
+      //   xPercent: -100,
+      //   // stagger: 0.1,
+      // })
       .from(".title div, .subtitle div", {
         duration: 2,
         xPercent: -100,
@@ -109,7 +110,9 @@ function App() {
           rotate: "-62deg",
         },
         "-=1.5"
-      );
+      )
+
+      tl.current.time(time)
   };
 
   return (
