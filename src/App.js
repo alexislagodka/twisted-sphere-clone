@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import gsap from "gsap";
 import Blobs1 from "./components/Blobs/Blobs1";
@@ -7,6 +7,32 @@ import Blobs3 from "./components/Blobs/Blobs3";
 
 function App() {
   const [demo, setdemo] = useState(1);
+
+  const tl = useRef(
+    gsap.timeline({
+      defaults: {
+        ease: "power3.inOut",
+      },
+    })
+  );
+
+  // const [tl] = useState(
+  //   gsap.timeline({
+  //     defaults: {
+  //       ease: "power3.inOut",
+  //     },
+  //   })
+  // );
+
+  // const tl = useMemo(
+  //   () =>
+  //     gsap.timeline({
+  //       defaults: {
+  //         ease: "power3.inOut",
+  //       },
+  //     }),
+  //   [demo]
+  // );
 
   const renderBlobs = (param) => {
     switch (param) {
@@ -31,18 +57,11 @@ function App() {
   }, [demo]);
 
   const article = () => {
-    // Main content
-    const tl = gsap.timeline({
-      defaults: {
-        ease: "power3.inOut",
-      },
-    });
-
     // Content clip
     const content = document.querySelector(".content span");
     const contentClip = { x: 0 };
 
-    tl.from(".title div, .subtitle div", {
+    tl.current.from(".title div, .subtitle div", {
       duration: 2,
       xPercent: -100,
       // stagger: 0.1,
@@ -75,8 +94,6 @@ function App() {
         },
         "-=1.5"
       );
-
-    return tl;
   };
 
   return (
