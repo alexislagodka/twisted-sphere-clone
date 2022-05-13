@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import gsap from "gsap";
 import Blobs1 from "./components/Blobs/Blobs1";
 import Blobs2 from "./components/Blobs/Blobs2";
 import Blobs3 from "./components/Blobs/Blobs3";
@@ -21,13 +22,62 @@ function App() {
   };
 
   useEffect(() => {
+    article();
     let bodyclass = `demo-${demo}`;
-    document.body.classList.add(bodyclass)
+    document.body.classList.add(bodyclass);
     return () => {
-      document.body.classList.remove(bodyclass)
-    }
-  }, [demo])
-  
+      document.body.classList.remove(bodyclass);
+    };
+  }, [demo]);
+
+  const article = () => {
+    // Main content
+    const tl = gsap.timeline({
+      defaults: {
+        ease: "power3.inOut",
+      },
+    });
+
+    // Content clip
+    const content = document.querySelector(".content span");
+    const contentClip = { x: 0 };
+
+    tl.from(".title div, .subtitle div", {
+      duration: 2,
+      xPercent: -100,
+      // stagger: 0.1,
+    })
+      .from(
+        ".menu__inner-translate",
+        {
+          duration: 1.5,
+          yPercent: -100,
+        },
+        "-=1.5"
+      )
+      .to(
+        contentClip,
+        {
+          duration: 1.5,
+          x: 100,
+          onUpdate: () => {
+            content.style.setProperty("--clip", `${contentClip.x}%`);
+          },
+        },
+        "-=1.25"
+      )
+      .from(
+        ".play",
+        {
+          duration: 1,
+          scale: 0,
+          rotate: "-62deg",
+        },
+        "-=1.5"
+      );
+
+    return tl;
+  };
 
   return (
     <div className="app">
@@ -78,7 +128,10 @@ function App() {
             </a>
           </div>
           <div className="dib oh">
-            <a href="https://github.com/alexislagodka/twisted-sphere-clone" className="dib">
+            <a
+              href="https://github.com/alexislagodka/twisted-sphere-clone"
+              className="dib"
+            >
               GitHub react version
             </a>
           </div>
