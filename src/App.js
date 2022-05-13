@@ -33,7 +33,8 @@ function App() {
   }, [demo]);
 
   const article = () => {
-    let time = tl.current ? tl.current.time() : 0;
+    // kill animation
+    // let time = tl.current ? tl.current.time() : 0;
     if (tl.current) tl.current.kill();
 
     tl.current = gsap.timeline({
@@ -42,17 +43,18 @@ function App() {
       },
     });
 
+    // setup
+    gsap.set(".title div", {x: 0, y: 0});
+    gsap.set(".subtitle div", {x: 0, y: 0});
+    gsap.set(".menu__inner-translate", {x: 0, y: 0});
+
+
     // Content clip
     const content = document.querySelector(".content span");
     const contentClip = { x: 0 };
 
     tl.current
       .set(".title div, .subtitle div", {
-        xPercent: -100,
-        // stagger: 0.1,
-      })
-      .from(".title div, .subtitle div", {
-        duration: 2,
         xPercent: -100,
         // stagger: 0.1,
       })
@@ -85,7 +87,7 @@ function App() {
         "-=1.5"
       );
 
-    tl.current.time(time);
+    // tl.current.time(time);
   };
 
   return (
