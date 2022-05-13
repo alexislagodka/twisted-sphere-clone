@@ -34,9 +34,9 @@ function App() {
 
   const article = () => {
     // kill animation
-    // let time = tl.current ? tl.current.time() : 0;
     if (tl.current) tl.current.kill();
 
+    // timeline
     tl.current = gsap.timeline({
       defaults: {
         ease: "power3.inOut",
@@ -44,17 +44,18 @@ function App() {
     });
 
     // setup
-    gsap.set(".title div", {x: 0, y: 0});
-    gsap.set(".subtitle div", {x: 0, y: 0});
-    gsap.set(".menu__inner-translate", {x: 0, y: 0});
-
+    gsap.set(".title div", { xPercent: 0 });
+    gsap.set(".subtitle div", { xPercent: 0 });
+    gsap.set(".menu__inner-translate", { yPercent: 0 });
+    gsap.set(".play", { rotate: "0deg", scale: 1 });
 
     // Content clip
     const content = document.querySelector(".content span");
     const contentClip = { x: 0 };
 
     tl.current
-      .set(".title div, .subtitle div", {
+      .from(".title div, .subtitle div", {
+        duration: 2,
         xPercent: -100,
         // stagger: 0.1,
       })
@@ -86,8 +87,6 @@ function App() {
         },
         "-=1.5"
       );
-
-    // tl.current.time(time);
   };
 
   return (
