@@ -59,7 +59,7 @@ function App() {
   }, [demo]);
 
   const article = () => {
-    // let time = tl.current ? tl.current.time() : 0;
+    let time = tl.current ? tl.current.time() : 0;
     let time = 0;
     if (tl.current) tl.current.kill()
     
@@ -74,10 +74,10 @@ function App() {
     const contentClip = { x: 0 };
 
     tl.current
-      // .set(".title div, .subtitle div", {
-      //   xPercent: -100,
-      //   // stagger: 0.1,
-      // })
+      .set(".title div, .subtitle div", {
+        xPercent: -100,
+        // stagger: 0.1,
+      })
       .from(".title div, .subtitle div", {
         duration: 2,
         xPercent: -100,
