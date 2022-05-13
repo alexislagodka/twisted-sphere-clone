@@ -60,7 +60,6 @@ function App() {
 
   const article = () => {
     let time = tl.current ? tl.current.time() : 0;
-    let time = 0;
     if (tl.current) tl.current.kill()
     
     tl.current = gsap.timeline({
